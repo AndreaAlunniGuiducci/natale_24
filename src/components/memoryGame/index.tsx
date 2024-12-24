@@ -43,7 +43,7 @@ const MemoryGame: React.FC = () => {
 
   useEffect(() => {
     const cardsWon = cards.filter((c) => c.isMatched);
-    if (cardsWon.length === 20) {
+    if (cardsWon.length === initialCards.length) {
       setWinGame(true);
     }
   }, [cards]);
@@ -61,6 +61,18 @@ const MemoryGame: React.FC = () => {
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     return shuffled;
+  };
+
+  const newGame = () => {
+    setWinGame(undefined);
+    const newGameCards = shuffleCards(
+      initialCards.map((c) => ({
+        ...c,
+        isFlipped: false,
+        isMatched: false,
+      }))
+    );
+    setCards(newGameCards);
   };
 
   const handleCardClick = (card: Card) => {
@@ -117,8 +129,31 @@ const MemoryGame: React.FC = () => {
           ))}
         </div>
       )}
-      {winGame === true && <div>hai vinto</div>}
-      {winGame === false && <div>hai perso</div>}
+      {winGame === true && (
+        <div>
+          <h1>Complimenti!</h1>
+          <p>
+            Hai completato il gioco della memoria con successo! Sei davvero una
+            campionessa! 🎉
+          </p>
+          <p>Ti auguro un Natale magico pieno di gioia e felicità amore mio.</p>
+          <button onClick={newGame}>Gioca di nuovo</button>
+        </div>
+      )}
+      {winGame === false && (
+        <div>
+          <h1>Non è andata!</h1>
+          <p>
+            Hai esaurito le mosse a disposizione. Ma non preoccuparti, puoi
+            sempre riprovare! 🎄
+          </p>
+          <p>
+            Non perdere la speranza, il Natale è il momento perfetto per nuovi
+            inizi. Riprova e vincerai!
+          </p>
+          <button onClick={newGame}>Gioca di nuovo</button>
+        </div>
+      )}
     </div>
   );
 };

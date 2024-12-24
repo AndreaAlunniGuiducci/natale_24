@@ -3,10 +3,12 @@
     padding: 20px;
     border-radius: 10px;
     text-align: center;
+    font-family: 'Georgia', serif;
   }
   
   .greeting-card h1 {
     font-size: 2em;
+    font-family: 'Lucida Handwriting', cursive;
     margin-bottom: 0.5em;
   }
   
@@ -15,7 +17,7 @@
     margin-bottom: 1em;
   }
   
-  .greeting-card button {
+  button {
     padding: 10px 20px;
     font-size: 1em;
     background: #ffffff;
@@ -25,7 +27,8 @@
     cursor: pointer;
   }
   
-  .greeting-card button:hover {
+   button:hover {
     background: #ffffffa2;
   }
+  
   
